@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -47,6 +48,7 @@ const Login = () => {
               <button
                 type="submit"
                 className="w-full bg-pink-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-pink-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+
               >
                 Login
               </button>
@@ -56,9 +58,9 @@ const Login = () => {
           {/* Optional: Signup link */}
           <p className="text-sm text-center mt-4">
             Don't have an account?{" "}
-            <a href="#" className="text-pink-600 hover:underline">
+            <Link to="/signup" className="text-pink-600 hover:underline">
               Sign up
-            </a>
+            </Link>
           </p>
         </div>
       </dialog>
