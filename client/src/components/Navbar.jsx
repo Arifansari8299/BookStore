@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Login from "./Login";
 
 const Navbar = () => {
    const[theme,setTheme]=useState(localStorage.getItem("theme")?localStorage.getItem("theme"):"light")
@@ -148,10 +149,11 @@ const Navbar = () => {
              hover:bg-gray-900 hover:scale-105 hover:shadow-lg 
              active:scale-95 focus:outline-none focus:ring-2 
              focus:ring-offset-2 focus:ring-gray-700 
-             transition duration-300 ease-in-out cursor-pointer"
+             transition duration-300 ease-in-out cursor-pointer" onClick={()=>document.getElementById("my_modal_3").showModal()}
             >
               Login
             </a>
+            <Login/>
           </div>
         </div>
       </div>
