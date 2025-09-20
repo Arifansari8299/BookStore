@@ -3,7 +3,7 @@ import React from "react";
 const Cards = ({ item }) => {
   return (
     <div className="mt-4 px-4 my-3">
-      <div className="card bg-base-100 w-full max-w-xs sm:max-w-sm md:max-w-md shadow-sm mx-auto">
+      <div className="card bg-base-100 w-full max-w-xs sm:max-w-sm md:max-w-md shadow-sm mx-auto hover:scale-105 transition duration-300 ease-in-out dark:bg-slate-900 dark:text-white dark:border">
         <figure>
           <img
             src={item.image}
