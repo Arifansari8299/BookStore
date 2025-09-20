@@ -33,7 +33,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className={`max-w-screen-4xl mx-auto md:px-20 px-4 fixed top-0 right-0 left-0 
+    <div className={`max-w-screen-2xl mx-auto md:px-20 px-4 fixed top-0 right-0 left-0 
         ${
             sticky ? "sticky-navbar shadow-md bg-base-200 duration-300 transition-all ease-in-out" : ""
         }`}>
