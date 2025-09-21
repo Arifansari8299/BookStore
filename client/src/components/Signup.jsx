@@ -1,14 +1,22 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Login from "./Login";
+import { useForm } from "react-hook-form";
 
 const Signup = () => {
+  const {
+    register,
+    handleSubmit,
+    // watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => console.log(data);
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-slate-900 px-4">
       <div className="w-full max-w-md bg-white dark:bg-slate-900 p-8 rounded-lg shadow-md relative">
-        
         {/* 🔙 Back Button inside card (top-right corner of card) */}
         <button
           onClick={() => navigate("/")}
@@ -21,7 +29,7 @@ const Signup = () => {
           Create an Account
         </h2>
 
-        <form className="space-y-5">
+        <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
           {/* Full Name */}
           <div>
             <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -31,7 +39,9 @@ const Signup = () => {
               type="text"
               placeholder="Enter your full name"
               className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
+              {...register("fullName", { required: true })}
             />
+            {errors.fullName && <span className="text-red-500">fullName is required</span>}
           </div>
 
           {/* Email */}
@@ -43,7 +53,9 @@ const Signup = () => {
               type="email"
               placeholder="Enter your email"
               className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
+              {...register("email", { required: true })}
             />
+            {errors.email && <span className="text-red-500">email is required</span>}
           </div>
 
           {/* Password */}
@@ -55,7 +67,9 @@ const Signup = () => {
               type="password"
               placeholder="Enter your password"
               className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
+              {...register("password", { required: true })}
             />
+            {errors.password && <span className="text-red-500">password is required</span>}
           </div>
 
           {/* Confirm Password */}
@@ -67,7 +81,11 @@ const Signup = () => {
               type="password"
               placeholder="Re-enter your password"
               className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
+              {...register("confirm_password", { required: true })}
             />
+            {errors.confirm_password && (
+              <span className="text-red-500">confirm password is required</span>
+            )}
           </div>
 
           {/* Submit Button */}
