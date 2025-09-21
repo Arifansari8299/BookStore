@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Login from "./Login";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const Signup = () => {
   const {
@@ -11,7 +12,31 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    if (data.password !== data.confirm_password) {
+      alert("Password do not match");
+      return;
+    }
+    // for api
+    const userInfo = {
+      fullname: data.fullname,
+      email: data.email,
+      password: data.password,
+    };
+    await axios
+      .post("http://localhost:3000/users/signup", userInfo)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data) {
+          alert("Signup successfull");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Error");
+      });
+    console.log(data)
+  };
   const navigate = useNavigate();
 
   return (
@@ -39,9 +64,11 @@ const Signup = () => {
               type="text"
               placeholder="Enter your full name"
               className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
-              {...register("fullName", { required: true })}
+              {...register("fullname", { required: true })}
             />
-            {errors.fullName && <span className="text-red-500">fullName is required</span>}
+            {errors.fullname && (
+              <span className="text-red-500">fullname is required</span>
+            )}
           </div>
 
           {/* Email */}
@@ -55,7 +82,9 @@ const Signup = () => {
               className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
               {...register("email", { required: true })}
             />
-            {errors.email && <span className="text-red-500">email is required</span>}
+            {errors.email && (
+              <span className="text-red-500">email is required</span>
+            )}
           </div>
 
           {/* Password */}
@@ -69,7 +98,9 @@ const Signup = () => {
               className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
               {...register("password", { required: true })}
             />
-            {errors.password && <span className="text-red-500">password is required</span>}
+            {errors.password && (
+              <span className="text-red-500">password is required</span>
+            )}
           </div>
 
           {/* Confirm Password */}
