@@ -1,7 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form"
+
 
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    // watch,
+    formState: { errors },
+  } = useForm()
+
+  const onSubmit = (data) => console.log(data)
   return (
     <div>
       <dialog id="my_modal_3" className="modal">
@@ -18,7 +28,7 @@ const Login = () => {
 
           <h3 className="font-bold text-2xl mb-4 text-center">Login</h3>
 
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
             {/* Email */}
             <div className="form-control">
               <label className="label text-sm font-semibold">
@@ -28,7 +38,9 @@ const Login = () => {
                 type="email"
                 placeholder="Enter your email"
                 className="input input-bordered w-full focus:outline-none focus:ring focus:ring-blue-500 dark:bg-slate-700 dark:border-slate-600 dark:placeholder-gray-400"
+                {...register("email", { required: true })}
               />
+              {errors.email && <span className="text-red-500">email is required</span>}
             </div>
 
             {/* Password */}
@@ -40,7 +52,10 @@ const Login = () => {
                 type="password"
                 placeholder="Enter your password"
                 className="input input-bordered w-full focus:outline-none focus:ring focus:ring-pink-500 dark:bg-slate-700 dark:border-slate-600 dark:placeholder-gray-400"
+                {...register("password", { required: true })}
+                
               />
+              {errors.password && <span className="text-red-500">password is required</span>}
             </div>
 
             {/* Submit Button */}
