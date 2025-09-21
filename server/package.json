@@ -8,5 +8,8 @@
   "keywords": [],
   "author": "Arif Ansari",
   "license": "ISC",
-  "description": "BookStore Mern Based full stack web application"
+  "description": "BookStore Mern Based full stack web application",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }
