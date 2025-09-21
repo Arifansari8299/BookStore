@@ -1,4 +1,5 @@
 import React from "react";
+import Login from "./Login";
 
 const Signup = () => {
   return (
@@ -62,12 +63,21 @@ const Signup = () => {
           </div>
         </form>
         {/* Redirect to login */}
-        <p className="text-sm text-center text-gray-600 dark:text-gray-400 mt-4">
+        <p className="text-sm  text-gray-600 dark:text-gray-400 mt-4">
           Already have an account?{" "}
-          <a href="" className="text-pink-600 hover:underline"
-          onClick={()=>document.getElementById("my_modal_3").showModal()}>
+          <a
+            href="#"
+            className="text-pink-600 hover:underline"
+            onClick={(e) => {
+              e.preventDefault(); // Page reload roko
+              const modal = document.getElementById("my_modal_3");
+              if (modal) modal.showModal(); // Apne existing modal ko dikhao
+            }}
+          >
             Login here
           </a>
+          {/* Apna pehle se banaya hua Login modal component */}
+          <Login />
         </p>
       </div>
     </div>
