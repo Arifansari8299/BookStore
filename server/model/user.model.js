@@ -6,11 +6,11 @@ const userSchema = new mongoose.Schema({
     },
     email:{
         type:String,
-        required:True
+        required:true
     },
     password:{
         type:String,
-        required:True
+        required:true
     }
 })
 const User = new mongoose.model("User",userSchema);
