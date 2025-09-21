@@ -1,7 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form"
 
 const Contact = () => {
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+      } = useForm()
+    
+      const onSubmit = (data) => console.log(data)
     const navigate = useNavigate()
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-slate-900 flex items-center justify-center px-4 py-10">
@@ -20,7 +29,7 @@ const Contact = () => {
         </h2>
 
         {/* Contact Form */}
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           {/* Name */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -31,7 +40,10 @@ const Contact = () => {
               placeholder="Enter your name"
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-slate-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
               required
+              {...register("fullName", { required: true })}
             />
+            {errors.fullName && <span className="text-red-500">fullName is required</span>}
+
           </div>
 
           {/* Email */}
@@ -44,7 +56,9 @@ const Contact = () => {
               placeholder="Enter your email"
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-slate-700 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
               required
+              {...register("email", { required: true })}
             />
+            {errors.email && <span className="text-red-500">email is required</span>}
           </div>
 
           {/* Message */}
